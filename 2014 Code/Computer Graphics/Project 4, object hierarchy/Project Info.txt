@@ -1,0 +1,5 @@
+The first half of the fourth assignment. This assignment was to create some sort of animated, 3D, hierarchical object.
+
+The object I made is a 6-way cross (looks much like a + sign with another line striaght through it), which can rotate in place. The hierarchy comes from that you can create another cross at each of the 6 ends of the first cross, all of which rotate in place at the end of the first cross.
+From there, you can create a third layer of crosses, who rotate on the end of the second cross, who rotates at the end of the first cross.
+I put a cap on it, so the program will stop you at 4 total layers of crosses (because that's what my computer could handle. I added a button to keep adding more layers, in case your computer is beefier than mine was).

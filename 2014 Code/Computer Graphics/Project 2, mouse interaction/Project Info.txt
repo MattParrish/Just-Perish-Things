@@ -1,0 +1,3 @@
+The second homework for Computer Graphics! This one the assignment was to create something that utilized clicking and dragging an object.
+
+This program features another 2D scene, this one with clouds of varying sizes moving down the screen, and a small red airplane you can click and drag around on the screen. Also in the bottom right is a slider that will adjust the speed at which the clouds are flying by. 
