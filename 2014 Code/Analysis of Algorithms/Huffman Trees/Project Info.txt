@@ -1,0 +1,1 @@
+This assignment was to create a .h and a .cpp that would allow for the creation of huffman trees, as well as using that tree to encode and decode a string.

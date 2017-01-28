@@ -1,0 +1,3 @@
+Many of the homework assignments in this repo have a section of comments at the beginning about being based on my teacher's code.
+Especially for things like Graphics, my teacher would give a very basic skeletal file. Usually it was just things like the function declarations that he wanted us to use so that our code would mesh with his testing programs correctly.
+For Graphics, his code also had the basic setup already done, such as telling the program how to create the view window. The actual meaningful code and comments are mine, however. 

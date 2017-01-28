@@ -1,0 +1,3 @@
+All of these are homework assignments, and as such, none of them are full programs. 
+The assignments were all to create header and include files to support a given test program. The test programs were all written by my teacher, and he keeps using them, so I cannot upload them here.
+

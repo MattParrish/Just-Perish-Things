@@ -1,0 +1,1 @@
+This assignment was to write a program that, when given a collection of blocks with a specific top color, bottom color, weight, and hieght, to construct a piling of the blocks to reach a specific height, but with as little weight as possible. Blocks may only stack on top of each other when the touching ends of two blocks have the same color.

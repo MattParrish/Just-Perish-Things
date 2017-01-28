@@ -1,0 +1,1 @@
+This assignment was to create just a header file with the functions to recursively calculate the greatest contiguous sum from a given array.
