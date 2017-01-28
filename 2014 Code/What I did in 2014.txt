@@ -1,0 +1,4 @@
+In 2014, I took Programming Languages, Software Construction, Computer Graphics, and Analysis of Algorithms.
+
+Software was more theoretical than it was about actually writing code (useful, as it was my first introduction to Kanban and what Scrum is), and so doesn't really have any code to show.
+The other three classes, though, most definitely do.

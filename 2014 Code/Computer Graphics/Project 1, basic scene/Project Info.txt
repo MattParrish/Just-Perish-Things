@@ -1,0 +1,3 @@
+This was the first homework for the class (technically the second half of it, but the first half was simply to compile and run an OpenGL program, to verify that you installed it correctly), and the assignment was to simply 'make a scene with some sort of animation'.
+
+This progam features a 2D scene wherein you can pilot a cloud around over an idyllic scene. You can change the scene to night, pilot the cloud around, turn the cloud into a stormcloud, and if storming, you can add a lightning bolt to the cloud.
