@@ -1,0 +1,5 @@
+This was the other project for Assembly Language, this one done on my own. The project was, once again, 'do something with assembly'.
+
+So I made Hopper! The definitely-Not-Frogger-I-Swear game! This one works by storing hex into registers, reading the hex into 'safe' or 'dangerous' tiles (the road vs the cars, for example), then bit-shifting the registers to simulate movement of all objects.  
+
+I intend on uploading either video or the .exe as soon as I can.

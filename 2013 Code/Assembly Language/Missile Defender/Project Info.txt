@@ -1,0 +1,10 @@
+This was a project I did with a friend for Assembly Language Programming. The project was a vague 'do something using assembly'.
+We decided to recreate Missile Command using Assembly. 
+
+How to play:
+Click and hold to create an explosion in the air, which will destroy incoming missiles.
+Once the boss appears, shoot him down too!
+
+Tips:
+If you really want, you can just click and hold the explosion directly over one city, and you'll never lose.
+Once the boss appears, simply click and hold the explosion over him, and he loses health every screen refresh, rather than one chunk per click.
