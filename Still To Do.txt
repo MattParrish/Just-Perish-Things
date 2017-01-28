@@ -1,0 +1,8 @@
+2015 classes:
+OS
+Capstone 1 (No real coding)
+Robots (No real coding)
+
+2016:
+Sys Arch
+Capstone 2 (Project that I don't own)

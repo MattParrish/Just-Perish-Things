@@ -1,0 +1,1 @@
+This assignment was to create a program that could spawn threads safely, call them on a function (simply called sa2a, the code for which is not mine), let them run, and wait for them all to finish before closing.
