@@ -16,13 +16,13 @@ using std::max;
 // utility function to find maximum of three integers. Returns int a if all equal
 int maxOfThree(int a, int b, int c)
 {
-    return max(max(a, b), c);
+	return max(max(a, b), c);
 }
 
 // utility function to find the maximum of four integers. Returns int a if all equal
 int maxOfFour(int a, int b, int c, int d)
 {
-    return max(maxOfThree(a, b, c), d);
+	return max(maxOfThree(a, b, c), d);
 }
 
 // gcsDataStruct, a struct for holding the gcs of:
@@ -32,10 +32,10 @@ int maxOfFour(int a, int b, int c, int d)
 //    Current value of the entire array
 struct gcsDataStruct
 {
-    int greatestSubarray;
-    int leftHalf;
-    int rightHalf;
-    int total;
+	int greatestSubarray;
+	int leftHalf;
+	int rightHalf;
+	int total;
 };
 
 // gcsWorkHorse function
@@ -49,58 +49,58 @@ struct gcsDataStruct
 template<typename RAIter>
 gcsDataStruct gcsWorkhorse(RAIter first, RAIter last)
 {
-    gcsDataStruct returnStruct;
+	gcsDataStruct returnStruct;
 
-    // Base Cases
-    //   If Empty, set everything to 0, done.
-    if (first == last)
-    {
-        returnStruct.greatestSubarray = 0;
-        returnStruct.leftHalf = 0;
-        returnStruct.rightHalf = 0;
-        returnStruct.total = 0;
-        return returnStruct;
-    }
-    // If last element, populate the struct
-    if (first == last-1)
-    {
-        returnStruct.greatestSubarray = *first;
-        returnStruct.leftHalf = *first;
-        returnStruct.rightHalf = *first;
-        returnStruct.total = *first;
-        return returnStruct;
-    }
+	// Base Cases
+	//   If Empty, set everything to 0, done.
+	if (first == last)
+	{
+		returnStruct.greatestSubarray = 0;
+		returnStruct.leftHalf = 0;
+		returnStruct.rightHalf = 0;
+		returnStruct.total = 0;	
+		return returnStruct;
+	}
+	// If last element, populate the struct
+	if (first == last-1)
+	{
+		returnStruct.greatestSubarray = *first;
+		returnStruct.leftHalf = *first;
+		returnStruct.rightHalf = *first;
+		returnStruct.total = *first;
+		return returnStruct;
+	}
 
-    // Calculates the middle of the list
-    RAIter middle = first + (last - first)/2;
+	// Calculates the middle of the list
+   	RAIter middle = first + (last - first)/2;
 
-    // Recursive calls on both halves
-    gcsDataStruct leftHandSide = gcsWorkhorse(first, middle);
-    gcsDataStruct rightHandSide = gcsWorkhorse(middle, last);
+	// Recursive calls on both halves
+	gcsDataStruct leftHandSide = gcsWorkhorse(first, middle);
+   	gcsDataStruct rightHandSide = gcsWorkhorse(middle, last);
 
-    gcsDataStruct totalSoFar;
+ 	gcsDataStruct totalSoFar;
 
-    // Calculates the total from both halves
-    totalSoFar.total = leftHandSide.total + rightHandSide.total;
+    	// Calculates the total from both halves
+    	totalSoFar.total = leftHandSide.total + rightHandSide.total;
 
-    // Calculates the gcs including the first element
-    totalSoFar.leftHalf = maxOfFour(leftHandSide.leftHalf,
-                                     leftHandSide.total,
-                                     leftHandSide.total + rightHandSide.leftHalf,
-                                     totalSoFar.total)
+    	// Calculates the gcs including the first element
+    	totalSoFar.leftHalf = maxOfFour(leftHandSide.leftHalf,
+                                        leftHandSide.total,
+                                        leftHandSide.total + rightHandSide.leftHalf,
+                                        totalSoFar.total)
 
-    // Calculates the gcs including the last element
-    totalSoFar.rightHalf = maxOfFour(rightHandSide.rightHalf,
-                                      rightHandSide.total,
-                                      rightHandSide.total + leftHandSide.rightHalf,
-                                      totalSoFar.total)
+    	// Calculates the gcs including the last element
+    	totalSoFar.rightHalf = maxOfFour(rightHandSide.rightHalf,
+                                         rightHandSide.total,
+                                         rightHandSide.total + leftHandSide.rightHalf,
+                                         totalSoFar.total)
 
-    // Calculates the greatest subarray
-    totalSoFar.greatestSubarray = maxOfThree(leftHandSide.greatestSubarray,
-                                    rightHandSide.greatestSubarray,
-                                    leftHandSide.rightHalf + rightHandSide.leftHalf);
+    	// Calculates the greatest subarray
+    	totalSoFar.greatestSubarray = maxOfThree(leftHandSide.greatestSubarray,
+          		                         rightHandSide.greatestSubarray,
+                                    		 leftHandSide.rightHalf + rightHandSide.leftHalf);
 
-    return totalSoFar;
+    	return totalSoFar;
 }
 
 // gcs
@@ -110,8 +110,8 @@ gcsDataStruct gcsWorkhorse(RAIter first, RAIter last)
 template<typename RAIter>
 int gcs(RAIter first, RAIter last)
 {
-    gcsDataStruct biggestValues = gcsWorkhorse(first, last);
-    return max(0, biggestValues.greatestSubarray);
+    	gcsDataStruct biggestValues = gcsWorkhorse(first, last);
+    	return max(0, biggestValues.greatestSubarray);
 }
 
 #endif // GCS_H_INCLUDED
