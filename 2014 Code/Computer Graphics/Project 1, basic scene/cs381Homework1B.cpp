@@ -474,7 +474,8 @@ void myDisplay()
 		glTranslated(cloudX, cloudY, 0.0);
 		drawCloud();
 		glPopMatrix();
-	} else	
+	} 
+	else	
 	{
 		//Draw the Cloud, storming
 		glColor3d(0.3, 0.3, 0.3);
@@ -518,22 +519,22 @@ void myDisplay()
 		}
 	}
 
-    // Draw documentation
-    glMatrixMode(GL_PROJECTION);  // Set up simple ortho projection
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(-1., 1., -1., 1.);
-    glColor3d(1.0, 1.0, 1.0);        // Black text
-    BitmapPrinter p(-0.9, 0.9, 0.1);
-    p.print("Space:  Toggle daytime");
-    p.print("Arrows: Fly the cloud");
+    	// Draw documentation
+    	glMatrixMode(GL_PROJECTION);  // Set up simple ortho projection
+    	glPushMatrix();
+    	glLoadIdentity();
+    	gluOrtho2D(-1., 1., -1., 1.);
+    	glColor3d(1.0, 1.0, 1.0);        // Black text
+    	BitmapPrinter p(-0.9, 0.9, 0.1);
+    	p.print("Space:  Toggle daytime");
+    	p.print("Arrows: Fly the cloud");
 	p.print("S key:  STORM MODE!");
 	p.print("D key:  LIGHTNING BOLT! (while storming)");
-    p.print("Esc:    Quit");
-    glPopMatrix();                // Restore prev projection
-    glMatrixMode(GL_MODELVIEW);
+    	p.print("Esc:    Quit");
+    	glPopMatrix();                // Restore prev projection
+    	glMatrixMode(GL_MODELVIEW);
 
-    glFlush();
+    	glFlush();
 }
 
 
@@ -542,11 +543,11 @@ void myDisplay()
 void myIdle()
 {
 	// Compute elapsed time since last movement
-    double currtime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
-    double elapsedtime = currtime - savetime;
-    savetime = currtime;
-    if (elapsedtime > 0.1)
-        elapsedtime = 0.1;
+    	double currtime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
+    	double elapsedtime = currtime - savetime;
+    	savetime = currtime;
+    	if (elapsedtime > 0.1)
+    		elapsedtime = 0.1;
 
 	// Update the rain's time for animating
 	rainTime += elapsedtime;
@@ -558,14 +559,14 @@ void myIdle()
 	sunBeamRotateAngle -= elapsedtime * 10;
 	glutPostRedisplay();
 
-    // Print OpenGL errors, if there are any (for debugging)
-    static int error_count = 0;
-    if (GLenum err = glGetError())
-    {
-        ++error_count;
-        cerr << "OpenGL ERROR " << error_count << ": "
-             << gluErrorString(err) << endl;
-    }
+    	// Print OpenGL errors, if there are any (for debugging)
+    	static int error_count = 0;
+    	if (GLenum err = glGetError())
+    	{
+        	++error_count;
+        	cerr << "OpenGL ERROR " << error_count << ": "
+             	     << gluErrorString(err) << endl;
+    	}
 }
 
 
@@ -573,15 +574,15 @@ void myIdle()
 // The GLUT keyboard function
 void myKeyboard(unsigned char key, int x, int y)
 {
-    switch (key)
-    {
-    case ESCKEY:  // Esc: quit
-        exit(0);
-        break;
-    case ' ':     // Space: toggle daytime
-        daytime = !daytime;
-        glutPostRedisplay();
-        break;
+    	switch (key)
+    	{
+    	case ESCKEY:  // Esc: quit
+        	exit(0);
+        	break;
+    	case ' ':     // Space: toggle daytime
+        	daytime = !daytime;
+        	glutPostRedisplay();
+        	break;
 	case 's':     // s: toggle Storm Mode
 		stormMode = !stormMode;
 		glutPostRedisplay();
@@ -591,7 +592,7 @@ void myKeyboard(unsigned char key, int x, int y)
 			lightning = !lightning;
 		glutPostRedisplay();
 		break;
-    }
+    	}
 }
 
 
@@ -599,44 +600,44 @@ void myKeyboard(unsigned char key, int x, int y)
 // The GLUT special function
 void mySpecial(int key, int x, int y)
 {
-    switch (key)
-    {
-    case GLUT_KEY_RIGHT:  // -> move Cloud right
-        cloudX += 0.1;
-		if (cloudX > 30.)
-		{
+    	switch (key)
+    	{
+    		case GLUT_KEY_RIGHT:  // -> move Cloud right
+        		cloudX += 0.1;
+			if (cloudX > 30.)
+			{
+				if(stormMode)
+					cloudX = -CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER;
+				else
+					cloudX = -CLOUD_WIDTH;
+			}
+        		glutPostRedisplay();
+        		break;
+    		case GLUT_KEY_LEFT:   // <- move Cloud left
+        		cloudX -= 0.1;
 			if(stormMode)
-			    cloudX = -CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER;
-			else
-				cloudX = -CLOUD_WIDTH;
-		}
-        glutPostRedisplay();
-        break;
-    case GLUT_KEY_LEFT:   // <- move Cloud left
-        cloudX -= 0.1;
-		if(stormMode)
-		{
-			if (cloudX < -(CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER))
+			{
+				if (cloudX < -(CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER))
+					cloudX = 30.0;
+			} else if(cloudX < -CLOUD_WIDTH)
 				cloudX = 30.0;
-		} else if(cloudX < -CLOUD_WIDTH)
-			cloudX = 30.0;
-        glutPostRedisplay();
-        break; 
+        		glutPostRedisplay();
+        		break; 
 
-	case GLUT_KEY_UP:    // ^ move Cloud up
-        cloudY += 0.1;
-        if (cloudY > 20.0)
-            cloudY = 20.;
-        glutPostRedisplay();
-        break; 
+		case GLUT_KEY_UP:    // ^ move Cloud up
+        		cloudY += 0.1;
+        		if (cloudY > 20.0)
+        			cloudY = 20.;
+        		glutPostRedisplay();
+        		break; 
 
-	case GLUT_KEY_DOWN:  // \/ move Cloud down
-        cloudY -= 0.1;
-        if (cloudY < 0.0)
-            cloudY = 0.0;
-        glutPostRedisplay();
-        break; 
-    }
+		case GLUT_KEY_DOWN:  // \/ move Cloud down
+        		cloudY -= 0.1;
+        		if (cloudY < 0.0)
+            			cloudY = 0.0;
+        		glutPostRedisplay();
+        		break; 
+    	}
 }
 
 
@@ -645,48 +646,48 @@ void mySpecial(int key, int x, int y)
 // Called by main after window creation
 void init()
 {
-    // Scene
-    daytime = true;
+    	// Scene
+    	daytime = true;
 	stormMode = false;
 	lightning = false;
-    cloudX = 5.0;
+    	cloudX = 5.0;
 	cloudY = 14.0;
 	rainTime = 0.0;
 	sunRotateAngle = 0.0;
 	sunBeamRotateAngle = 0.0;
 
 	// Objects
-    savetime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
+    	savetime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
 
-    // OpenGL Stuff
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluOrtho2D(0.0, 30.0, 0.0, 20.0);
+    	// OpenGL Stuff
+    	glMatrixMode(GL_PROJECTION);
+    	glLoadIdentity();
+    	gluOrtho2D(0.0, 30.0, 0.0, 20.0);
 
-    glMatrixMode(GL_MODELVIEW);  // Always go back to model/view mode
+    	glMatrixMode(GL_MODELVIEW);  // Always go back to model/view mode
 }
 
 
 int main(int argc, char ** argv)
 {
-    // Initialize OpenGL/GLUT
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    	// Initialize OpenGL/GLUT
+    	glutInit(&argc, argv);
+    	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 
-    // Make a window
-    glutInitWindowSize(startwinsizeX, startwinsizeY);
-    glutInitWindowPosition(50, 50);
-    glutCreateWindow("CS 381 - Homework 1, Cloud Sim 2014");
+    	// Make a window
+    	glutInitWindowSize(startwinsizeX, startwinsizeY);
+    	glutInitWindowPosition(50, 50);
+    	glutCreateWindow("CS 381 - Homework 1, Cloud Sim 2014");
 
-    // Initialize GL states & register GLUT callbacks
-    init();
-    glutDisplayFunc(myDisplay);
-    glutIdleFunc(myIdle);
-    glutKeyboardFunc(myKeyboard);
-    glutSpecialFunc(mySpecial);
+    	// Initialize GL states & register GLUT callbacks
+    	init();
+    	glutDisplayFunc(myDisplay);
+    	glutIdleFunc(myIdle);
+    	glutKeyboardFunc(myKeyboard);
+    	glutSpecialFunc(mySpecial);
 
-    // Do something
-    glutMainLoop();
+    	// Do something
+    	glutMainLoop();
 
-    return 0;
+    	return 0;
 }

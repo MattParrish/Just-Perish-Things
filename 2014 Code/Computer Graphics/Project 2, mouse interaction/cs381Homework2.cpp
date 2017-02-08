@@ -46,26 +46,27 @@ double cam_xmin, cam_xmax, cam_ymin, cam_ymax;
 
 // Mouse
 double cam_mousex, cam_mousey; // Mouse pos in cam coords
-int draggedobj;                // 0: not currently dragging
+int draggedobj;                // draggedobj will only ever be 0, 1, or 2
+			       // 0: not currently dragging
                                // 1: dragging the plane
-							   // 2: dragging the throttle
+			       // 2: dragging the throttle
 // Objects
 double savetime; 
 
 // Plane
-const double planewidth = 0.1; // Plane half side len (cam coords)
+const double planewidth = 0.1;       // Plane half side len (cam coords)
 double planeposx, planeposy;         // x,y of center of plane (cam coords)
 double planedragposx, planedragposy; // Where plane is dragged (cam coords)
-                               // Valid when draggedobj == 1
-                               // May lie outside window; in this case
-                               //  (planeposx, planeposy) is nearest point
-                               //  with entire square in window.
+                                     // Valid when draggedobj == 1
+                                     // May lie outside window; in this case
+                                     //  (planeposx, planeposy) is nearest point
+                                     //  with entire square in window.
 
 // Throttle
-const double throttlehalfsize = 0.1; //Throttle half side len (cam coords)
+const double throttlehalfsize = 0.1;       //Throttle half side len (cam coords)
 double throttleposx, throttleposy;         // x,y of the center of the throttle (cam coords)
 double throttledragposx, throttledragposy; // Where Throttle is dragged (cam coords)
-								// Valid when draggedobj == 2
+					   // Valid when draggedobj == 2
 
 // Clouds
 double cloud1Y;
@@ -92,12 +93,12 @@ void drawPlane()
 	//    anything changed.
 	glPushMatrix();
 	glColor3d(0.7,0.0,0.0);
-    glBegin(GL_POLYGON);
-        glVertex2d(0.375, 0.875);
+    	glBegin(GL_POLYGON);
+        	glVertex2d(0.375, 0.875);
 		glVertex2d(-0.375, 0.875);
 		glVertex2d(-0.375, -0.375);
 		glVertex2d(0.375, -0.375);
-    glEnd();
+    	glEnd();
 
 	glBegin(GL_TRIANGLES);
 		glVertex2d(-0.375, -0.375);
@@ -203,17 +204,17 @@ void drawThrottleBox()
 // The GLUT display function
 void myDisplay()
 {
-    glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+    	glClear(GL_COLOR_BUFFER_BIT);
 
-    // Draw objects
+    	// Draw objects
 
-    // Draw Plane
-    glLoadIdentity();
+    	// Draw Plane
+    	glLoadIdentity();
 	glPushMatrix();
-    glTranslated(planeposx, planeposy, 0.);
-    glScaled(planewidth, planewidth, planewidth);
-    drawPlane();
+    	glTranslated(planeposx, planeposy, 0.);
+    	glScaled(planewidth, planewidth, planewidth);
+    	drawPlane();
 	glPopMatrix();
 	
 	// ****** CLOUDS ****** \\
@@ -278,22 +279,22 @@ void myDisplay()
 	drawThrottle();
 	glPopMatrix();
 
-    // Draw documentation
-    glLoadIdentity();
-    glMatrixMode(GL_PROJECTION);  // Set up simple ortho projection
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0., double(winw), 0., double(winh));
-    glColor3d(0., 0., 0.);        // Black text
-    BitmapPrinter p(20., winh-20., 20.);
-    p.print("Click and Drag to Fly The Airplane");
-    p.print("Click and Drag the Throttle to increase");
-    p.print("   or decrease speed.");
-    p.print("Esc - Quit");
-    glPopMatrix();                // Restore prev projection
-    glMatrixMode(GL_MODELVIEW);
+    	// Draw documentation
+    	glLoadIdentity();
+   	glMatrixMode(GL_PROJECTION);  // Set up simple ortho projection
+   	glPushMatrix();
+    	glLoadIdentity();
+    	gluOrtho2D(0., double(winw), 0., double(winh));
+    	glColor3d(0., 0., 0.);        // Black text
+    	BitmapPrinter p(20., winh-20., 20.);
+    	p.print("Click and Drag to Fly The Airplane");
+    	p.print("Click and Drag the Throttle to increase");
+    	p.print("   or decrease speed.");
+    	p.print("Esc - Quit");
+    	glPopMatrix();                // Restore prev projection
+    	glMatrixMode(GL_MODELVIEW);
 
-    glutSwapBuffers();
+    	glutSwapBuffers();
 }
 
 
@@ -302,11 +303,11 @@ void myDisplay()
 void myIdle()
 {
 	// Compute elapsed time since last movement
-    double currtime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
-    double elapsedtime = currtime - savetime;
-    savetime = currtime;
-    if (elapsedtime > 0.1)
-        elapsedtime = 0.1;
+    	double currtime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
+    	double elapsedtime = currtime - savetime;
+    	savetime = currtime;
+    	if (elapsedtime > 0.1)
+        	elapsedtime = 0.1;
 
 	// Cloud Movement Logic
 	elapsedtime *= throttleposy+2.0;
@@ -334,14 +335,14 @@ void myIdle()
 		cloud7Y = 1.0 + cloud567Size;
 	glutPostRedisplay();
 
-    // Print OpenGL errors, if there are any (for debugging)
-    static int error_count = 0;
-    if (GLenum err = glGetError())
-    {
-        ++error_count;
-        cerr << "OpenGL ERROR " << error_count << ": "
-             << gluErrorString(err) << endl;
-    }
+    	// Print OpenGL errors, if there are any (for debugging)
+    	static int error_count = 0;
+    	if (GLenum err = glGetError())
+    	{
+        	++error_count;
+        	cerr << "OpenGL ERROR " << error_count << ": "
+        	     << gluErrorString(err) << endl;
+    	}
 }
 
 
@@ -349,12 +350,12 @@ void myIdle()
 // The GLUT keyboard function
 void myKeyboard(unsigned char key, int x, int y)
 {
-    switch (key)
-    {
-    case ESCKEY:  // Esc: quit
-        exit(0);
-        break;
-    }
+    	switch (key)
+    	{
+    		case ESCKEY:  // Esc: quit
+        		exit(0);
+        		break;
+    	}
 }
 
 
@@ -364,14 +365,14 @@ void myKeyboard(unsigned char key, int x, int y)
 //  place the plane into window, at nearest possible location.
 void fixPlaneLoc()
 {
-    if (planeposx < cam_xmin+planewidth)
-        planeposx = cam_xmin+planewidth;
-    if (planeposx > cam_xmax-planewidth)
-        planeposx = cam_xmax-planewidth;
-    if (planeposy < cam_ymin+planewidth)
-        planeposy = cam_ymin+planewidth;
-    if (planeposy > cam_ymax-planewidth)
-        planeposy = cam_ymax-planewidth;
+    	if (planeposx < cam_xmin+planewidth)
+        	planeposx = cam_xmin+planewidth;
+    	if (planeposx > cam_xmax-planewidth)
+        	planeposx = cam_xmax-planewidth;
+    	if (planeposy < cam_ymin+planewidth)
+        	planeposy = cam_ymin+planewidth;
+    	if (planeposy > cam_ymax-planewidth)
+        	planeposy = cam_ymax-planewidth;
 }
 
 // fixThrottleLoc
@@ -381,10 +382,10 @@ void fixPlaneLoc()
 void fixThrottleLoc()
 {
 	if (throttleposy < cam_ymin + throttlehalfsize)
-        throttleposy = cam_ymin + throttlehalfsize;
-    if (throttleposy > -throttlehalfsize)
-        throttleposy = -throttlehalfsize;
-    throttleposx = 0.8;
+        	throttleposy = cam_ymin + throttlehalfsize;
+    	if (throttleposy > -throttlehalfsize)
+        	throttleposy = -throttlehalfsize;
+    	throttleposx = 0.8;
 }
 
 
@@ -392,38 +393,38 @@ void fixThrottleLoc()
 // The GLUT reshape function
 void myReshape(int w, int h)
 {
-    // Set viewport & save window dimensions in globals
-    glViewport(0, 0, w, h);
-    winw = w;
-    winh = h;
+    	// Set viewport & save window dimensions in globals
+    	glViewport(0, 0, w, h);
+    	winw = w;
+    	winh = h;
 
-    // Set up projection
-    // Save max/min x/y coords in globals
-    // Projection is orthographic. Aspect ratio is correct,
-    // and region -1..1 in x, y always just fits in viewport.
-    if (w > h)
-    {
-        cam_xmin = -double(w)/h;
-        cam_xmax = double(w)/h;
-        cam_ymin = -1.;
-        cam_ymax = 1.;
-    }
-    else
-    {
-        cam_xmin = -1.;
-        cam_xmax = 1.;
-        cam_ymin = -double(h)/w;
-        cam_ymax = double(h)/w;
-    }
+    	// Set up projection
+    	// Save max/min x/y coords in globals
+    	// Projection is orthographic. Aspect ratio is correct,
+    	// and region -1..1 in x, y always just fits in viewport.
+    	if (w > h)
+    	{
+        	cam_xmin = -double(w)/h;
+        	cam_xmax = double(w)/h;
+        	cam_ymin = -1.;
+        	cam_ymax = 1.;
+    	}
+    	else
+    	{
+        	cam_xmin = -1.;
+        	cam_xmax = 1.;
+        	cam_ymin = -double(h)/w;
+        	cam_ymax = double(h)/w;
+    	}	
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluOrtho2D(cam_xmin, cam_xmax, cam_ymin, cam_ymax);
+    	glMatrixMode(GL_PROJECTION);
+    	glLoadIdentity();
+    	gluOrtho2D(cam_xmin, cam_xmax, cam_ymin, cam_ymax);
 
-    glMatrixMode(GL_MODELVIEW);  // Always go back to model/view mode
+    	glMatrixMode(GL_MODELVIEW);  // Always go back to model/view mode
 
-    // Move our square into the window, if it is outside
-    fixPlaneLoc();
+    	// Move our square into the window, if it is outside
+    	fixPlaneLoc();
 }
 
 
@@ -433,13 +434,13 @@ void myReshape(int w, int h)
 // Uses globals winw, winh, cam_xmin, cam_xmax, cam_ymin, cam_ymax.
 void saveMouse(int x, int y)
 {
-    double t;  // Intermediate value of lirping
+    	double t;  // Intermediate value of lirping
 
-    t = double(x) / winw;
-    cam_mousex = cam_xmin + t * (cam_xmax - cam_xmin);
+    	t = double(x) / winw;
+    	cam_mousex = cam_xmin + t * (cam_xmax - cam_xmin);
 
-    t = double(y) / winh;
-    cam_mousey = cam_ymax + t * (cam_ymin - cam_ymax);
+    	t = double(y) / winh;
+    	cam_mousey = cam_ymax + t * (cam_ymin - cam_ymax);
 }
 
 
@@ -447,67 +448,67 @@ void saveMouse(int x, int y)
 // The GLUT mouse function
 void myMouse(int button, int state, int x, int y)
 {
-    // Save old mouse pos, for relative mouse-movement computation
-    double old_cam_mousex = cam_mousex;
-    double old_cam_mousey = cam_mousey;
+    	// Save old mouse pos, for relative mouse-movement computation
+    	double old_cam_mousex = cam_mousex;
+    	double old_cam_mousey = cam_mousey;
 
-    // Find mouse pos in cam coords (saved in cam_mousex, cam_mousey)
-    saveMouse(x, y);
+    	// Find mouse pos in cam coords (saved in cam_mousex, cam_mousey)
+    	saveMouse(x, y);
 
-    if (button == GLUT_LEFT_BUTTON)
-    {
-        if (state == GLUT_DOWN)  // Left mouse down
-        {
-            // Extent test for plane
-            if (cam_mousex >= planeposx-planewidth
-             && cam_mousex <= planeposx+planewidth
-             && cam_mousey >= planeposy-planewidth
-             && cam_mousey <= planeposy+planewidth)
-            {
-                // We have a mouse-down on the plane
-                draggedobj = 1;
-                planedragposx = planeposx;
-                planedragposy = planeposy;
-                glutPostRedisplay();
-            } 
+    	if (button == GLUT_LEFT_BUTTON)
+    	{
+        	if (state == GLUT_DOWN)  // Left mouse down
+        	{
+            		// Extent test for plane
+            		if (cam_mousex >= planeposx-planewidth
+             			&& cam_mousex <= planeposx+planewidth
+             			&& cam_mousey >= planeposy-planewidth
+             			&& cam_mousey <= planeposy+planewidth)
+            		{
+                		// We have a mouse-down on the plane
+                		draggedobj = 1;
+                		planedragposx = planeposx;
+                		planedragposy = planeposy;
+                		glutPostRedisplay();
+            		}	 
 			// Extent test for throttle
-            if (cam_mousex >= throttleposx-throttlehalfsize
-             && cam_mousex <= throttleposx+throttlehalfsize
-             && cam_mousey >= throttleposy-throttlehalfsize
-             && cam_mousey <= throttleposy+throttlehalfsize)
-            {
-                // We have a mouse-down on throttle
-                draggedobj = 2;
+            		if (cam_mousex >= throttleposx-throttlehalfsize
+             			&& cam_mousex <= throttleposx+throttlehalfsize
+             			&& cam_mousey >= throttleposy-throttlehalfsize
+             			&& cam_mousey <= throttleposy+throttlehalfsize)
+            		{
+                		// We have a mouse-down on throttle
+                		draggedobj = 2;
 				throttledragposx = throttleposx;
-                throttledragposy = throttleposy;
-                glutPostRedisplay();
-            }
-        }
-        else // Left mouse up
-        {
-            if (draggedobj == 1)  // We were dragging the plane
-            {
-                // Move the plane by relative mouse movement
-                planedragposx += (cam_mousex - old_cam_mousex);
-                planedragposy += (cam_mousey - old_cam_mousey);
-                planeposx = planedragposx;
-                planeposy = planedragposy;
-                fixPlaneLoc();
-                glutPostRedisplay();
-            }
+                		throttledragposy = throttleposy;
+                		glutPostRedisplay();
+            		}
+        	}
+        	else // Left mouse up
+        	{
+            		if (draggedobj == 1)  // We were dragging the plane
+            		{
+                		// Move the plane by relative mouse movement
+                		planedragposx += (cam_mousex - old_cam_mousex);
+                		planedragposy += (cam_mousey - old_cam_mousey);
+                		planeposx = planedragposx;
+                		planeposy = planedragposy;
+                		fixPlaneLoc();
+                		glutPostRedisplay();
+            		}
 			if (draggedobj == 2)  // We were dragging Throttle
-            {
-                // Move the throttle by relative mouse movement
-                throttledragposx += (cam_mousex - old_cam_mousex);
-                throttledragposy += (cam_mousey - old_cam_mousey);
-                throttleposx = throttledragposx;
-                throttleposy = throttledragposy;
+            		{
+                		// Move the throttle by relative mouse movement
+                		throttledragposx += (cam_mousex - old_cam_mousex);
+                		throttledragposy += (cam_mousey - old_cam_mousey);
+                		throttleposx = throttledragposx;
+                		throttleposy = throttledragposy;
 				fixThrottleLoc();
-                glutPostRedisplay();
-            }
-            draggedobj = 0;
-        }
-    }
+                		glutPostRedisplay();
+            		}
+            		draggedobj = 0;
+        	}
+    	}
 }
 
 
@@ -515,34 +516,34 @@ void myMouse(int button, int state, int x, int y)
 // The GLUT motion function
 void myMotion(int x, int y)
 {
-    // Save old mouse pos, for relative mouse-movement computation
-    double old_cam_mousex = cam_mousex;
-    double old_cam_mousey = cam_mousey;
+    	// Save old mouse pos, for relative mouse-movement computation
+    	double old_cam_mousex = cam_mousex;
+    	double old_cam_mousey = cam_mousey;
 
-    // Find mouse pos in cam coords (saved in cam_mousex, cam_mousey)
-    saveMouse(x, y);
+    	// Find mouse pos in cam coords (saved in cam_mousex, cam_mousey)
+    	saveMouse(x, y);
 
-    if (draggedobj == 1)  // We are dragging the plane
-    {
-        // Move the plane by relative mouse movement
-        planedragposx += (cam_mousex - old_cam_mousex);
-        planedragposy += (cam_mousey - old_cam_mousey);
-        planeposx = planedragposx;
-        planeposy = planedragposy;
-        fixPlaneLoc();
-        glutPostRedisplay();
-    }
+    	if (draggedobj == 1)  // We are dragging the plane
+    	{
+        	// Move the plane by relative mouse movement
+        	planedragposx += (cam_mousex - old_cam_mousex);
+        	planedragposy += (cam_mousey - old_cam_mousey);
+        	planeposx = planedragposx;
+        	planeposy = planedragposy;
+        	fixPlaneLoc();
+        	glutPostRedisplay();
+    	}
 
 	if (draggedobj == 2)  // We are dragging the throttle
-    {
-        // Move the throttle by relative mouse movement
-        throttledragposx += (cam_mousex - old_cam_mousex);
-        throttledragposy += (cam_mousey - old_cam_mousey);
-        throttleposx = throttledragposx;
-        throttleposy = throttledragposy;
-        fixThrottleLoc();
-        glutPostRedisplay();
-    }
+    	{
+        	// Move the throttle by relative mouse movement
+        	throttledragposx += (cam_mousex - old_cam_mousex);
+        	throttledragposy += (cam_mousey - old_cam_mousey);
+        	throttleposx = throttledragposx;
+        	throttleposy = throttledragposy;
+        	fixThrottleLoc();
+        	glutPostRedisplay();
+    	}
 }
 
 
@@ -551,17 +552,17 @@ void myMotion(int x, int y)
 // Called by main after window creation
 void init()
 {
-    // Mouse
-    draggedobj = 0;
-    cam_mousex = 0.0;
-    cam_mousey = 0.0;
+    	// Mouse
+    	draggedobj = 0;
+    	cam_mousex = 0.0;
+    	cam_mousey = 0.0;
 
-    // Objects
-    planeposx = 0.0;
-    planeposy = 0.0;
+    	// Objects
+    	planeposx = 0.0;
+    	planeposy = 0.0;
 	throttleposx = 0.8;
 	throttleposy = -0.8;
-    savetime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
+    	savetime = glutGet(GLUT_ELAPSED_TIME) / 1000.;
 
 	// Clouds
 	cloud1Y = 1.0;
@@ -578,33 +579,33 @@ void init()
 	cloud4Size = 0.4;
 	cloud567Size = 0.35;
 
-    // OpenGL Stuff
-    // (Nothing here)
+    	// OpenGL Stuff
+    	// (Nothing here)
 }
 
 
 int main(int argc, char ** argv)
 {
-    // Initialize OpenGL/GLUT
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    	// Initialize OpenGL/GLUT
+    	glutInit(&argc, argv);
+    	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
-    // Make a window
-    glutInitWindowSize(startwinsize, startwinsize);
-    glutInitWindowPosition(50, 50);
-    glutCreateWindow("CS 381 Homework 2 - Rapid Bread");
+    	// Make a window
+    	glutInitWindowSize(startwinsize, startwinsize);
+    	glutInitWindowPosition(50, 50);
+    	glutCreateWindow("CS 381 Homework 2 - Rapid Bread");
 
-    // Initialize GL states & register GLUT callbacks
-    init();
-    glutDisplayFunc(myDisplay);
-    glutIdleFunc(myIdle);
-    glutKeyboardFunc(myKeyboard);
-    glutReshapeFunc(myReshape);
-    glutMouseFunc(myMouse);
-    glutMotionFunc(myMotion);
+    	// Initialize GL states & register GLUT callbacks
+    	init();
+    	glutDisplayFunc(myDisplay);
+    	glutIdleFunc(myIdle);
+    	glutKeyboardFunc(myKeyboard);
+    	glutReshapeFunc(myReshape);
+    	glutMouseFunc(myMouse);
+    	glutMotionFunc(myMotion);
 
-    // Do something
-    glutMainLoop();
+    	// Do something
+    	glutMainLoop();
 
-    return 0;
+    	return 0;
 }

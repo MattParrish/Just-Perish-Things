@@ -42,17 +42,16 @@ class HuffCode {
 
 // ***** HuffCode: ctors, dctor, op= *****
 public:
-
-    // Compiler-generated default ctor, copy ctor, copy =, dctor used
+    	// Compiler-generated default ctor, copy ctor, copy =, dctor used
 
 // ***** HuffCode: general public functions *****
 public:
 
-    void setWeights(const std::unordered_map<char, int> & theweights);
+    	void setWeights(const std::unordered_map<char, int> & theweights);
 
-    std::string encode(const std::string & text) const;
+    	std::string encode(const std::string & text) const;
 
-    std::string decode(const std::string & codestr) const;
+    	std::string decode(const std::string & codestr) const;
 
 // ***** HuffCode: data members *****
 private:

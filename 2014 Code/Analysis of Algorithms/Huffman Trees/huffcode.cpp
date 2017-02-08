@@ -150,7 +150,7 @@ string HuffCode::encode(const string & text) const
 		tempString = stringToNum.at(currentChar);
 		returnValue += tempString; 
 	}
-    return returnValue;  
+    	return returnValue;  
 }
 
 // decode
@@ -173,6 +173,6 @@ string HuffCode::decode(const string & codestr) const
 		}
 	}
 
-    return returnString;
+    	return returnString;
 }
 
