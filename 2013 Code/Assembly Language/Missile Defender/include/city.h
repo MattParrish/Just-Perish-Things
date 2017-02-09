@@ -14,12 +14,12 @@ using namespace ci;
 // class City
 // Contains information for city Objects
 class City {
- public:
+	public:
 
-//Constructor
+	//Constructor
 	City();
 
-//Mutators
+	//Mutators
 	void kill();
 	void draw();
 	void setUp();
@@ -27,5 +27,5 @@ class City {
 	bool _alive;
 
 	gl::Texture _currentCityState;
-	ci::Vec2f	_cityLocation;
+	ci::Vec2f _cityLocation;
 };

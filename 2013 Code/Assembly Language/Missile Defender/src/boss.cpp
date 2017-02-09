@@ -1,7 +1,11 @@
 ///////////////////////////////////////////
+
 //    Matthew Parrish and Tom Cerny      //
+
 //          CS301 Project 2              //
+
 //    boss.cp file for MissileDefender   //
+
 ///////////////////////////////////////////
 
 #include "boss.h"
@@ -34,7 +38,8 @@ void Boss::update() {
 		cmp eax, 0;
 		jne done; 
 		inc edi;
-	done:
+		
+		done:
 		mov newyLocation,edi; 
 	} 
 	_yLocation=newyLocation;

@@ -22,13 +22,14 @@ MissileLauncher::MissileLauncher()
 //Post: Checks if the leftmost city is alive.
 bool MissileLauncher::leftLifeCheck()
 {
-		for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList ){
-			if(missileList->getMissileX() == app::getWindowWidth()/4 
-				&& missileList->_missileLocation.y > app::getWindowHeight() - 10 
-				&& missileList->_missileLocation.y < app::getWindowHeight() + 5)
-				return false;
+	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList )
+	{
+		if(missileList->getMissileX() == app::getWindowWidth()/4 
+		   && missileList->_missileLocation.y > app::getWindowHeight() - 10 
+		   && missileList->_missileLocation.y < app::getWindowHeight() + 5)
+			return false;
 	}
-		return true;
+	return true;
 }
 
 
@@ -36,33 +37,36 @@ bool MissileLauncher::leftLifeCheck()
 //Post: Checks if the middle city is alive.
 bool MissileLauncher::midLifeCheck()
 {
-		for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList ){
-			if(missileList->getMissileX() == app::getWindowWidth()/2 
-				&& missileList->_missileLocation.y > app::getWindowHeight() - 10 
-				&& missileList->_missileLocation.y < app::getWindowHeight() + 5)
-				return false;
+	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList )
+	{
+		if(missileList->getMissileX() == app::getWindowWidth()/2 
+		   && missileList->_missileLocation.y > app::getWindowHeight() - 10 
+		   && missileList->_missileLocation.y < app::getWindowHeight() + 5)
+			return false;
 	}
-		return true;
+	return true;
 }
 
 //Pre: None
 //Post: Checks if the rightmost city is alive.
 bool MissileLauncher::rightLifeCheck()
 {
-		for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList ){
-			if(missileList->getMissileX() == 3*(app::getWindowWidth()/4) 
-				&& missileList->_missileLocation.y > app::getWindowHeight() - 5
-				&& missileList->_missileLocation.y < app::getWindowHeight() + 5)
-				return false;
+	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList )
+	{
+		if(missileList->getMissileX() == 3*(app::getWindowWidth()/4) 
+		   && missileList->_missileLocation.y > app::getWindowHeight() - 5
+		   && missileList->_missileLocation.y < app::getWindowHeight() + 5)
+			return false;
 	}
-		return true;
+	return true;
 }
 
 //Pre: None
 //Post: Updates the MissileLauncher's Missiles' locations
 void MissileLauncher::update()
 {
-	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList ){
+	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList )
+	{
 		missileList->update();
 	}
 }
@@ -71,7 +75,8 @@ void MissileLauncher::update()
 //Post: Draws all Missiles in the MissileLauncher list.
 void MissileLauncher::draw()
 {
-	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList ){
+	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end(); ++missileList )
+	{
 		missileList->draw();
 	}
 
@@ -81,9 +86,9 @@ void MissileLauncher::draw()
 //Post: Launches a new missile.
 void MissileLauncher::addMissile()
 {
-		float x = Rand::randFloat( app::getWindowWidth() );
-		float y = 0;
-		_Missiles.push_back( Missile( Vec2f( x, y ) ) );
+	float x = Rand::randFloat( app::getWindowWidth() );
+	float y = 0;
+	_Missiles.push_back( Missile( Vec2f( x, y ) ) );
 
 }
 
@@ -92,14 +97,14 @@ void MissileLauncher::addMissile()
 void MissileLauncher::deadCheck(float circleX, float circleY, float radius)
 {
 	for( list<Missile>::iterator missileList = _Missiles.begin(); missileList != _Missiles.end();/* missileList++*/ )
-		{
-			if(missileList->_missileLocation.x < (circleX + radius) 
-				&& missileList->_missileLocation.x > (circleX - radius) 
-				&& missileList->_missileLocation.y < (circleY + radius) 
-				&& missileList->_missileLocation.y > (circleY - radius))
-					missileList = _Missiles.erase(missileList);
-			else
-				missileList++;
-		}
+	{
+		if(missileList->_missileLocation.x < (circleX + radius) 
+		   && missileList->_missileLocation.x > (circleX - radius) 
+		   && missileList->_missileLocation.y < (circleY + radius) 
+		   && missileList->_missileLocation.y > (circleY - radius))
+			missileList = _Missiles.erase(missileList);
+		else
+			missileList++;
+	}
 }
 

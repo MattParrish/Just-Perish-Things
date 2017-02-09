@@ -1,0 +1,5 @@
+This was project 3, and the goal was to make something interactive, animated, having at least 2 independant objects, and 3D.
+
+What I made is a 24-sided polyhedron (called a polygon because at the time I didn't realize that 3D objects were polyhedra, not more polygons), that is trapped inside a box.
+By using W/A/S/D to apply inertia in their respective directions in the X/Y plane, then F/R to apply inertia along the Z plane, the polyhedron will move, and whenever it intersects with the bounding box, it will invert directions, effectively bouncing off of an invisible wall.
+The +/- keys can be used to increase the size of the bounding box around the polyhedron, and it will continue at speed, bouncing off of the walls of the newly resized box.

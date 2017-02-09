@@ -1,2 +1,2 @@
 These will not compile without OpenGL installed and linked to the project, so I tried uploading the .exes my computer created, but the .exes won't work without various files from OpenGL as well. 
-As such, I fully intend on adding a short video or gif into each of the projects, as soon as I am able. 
+As such, a short mp4 of all the projects have been added into all of the folders, giving a demonstration of the program and its functions. 

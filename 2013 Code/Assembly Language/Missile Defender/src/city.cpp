@@ -34,8 +34,7 @@ void City::locationSet(int placement)
 	float actualCitySpotWidth;
 	float actualCitySpotHeight;
 	switch(placement)
-	{
-		
+	{		
 	case 1:	
 		 _asm{
 			 movss xmm0,cityPlacementWidthHelper;

@@ -37,9 +37,9 @@ Missile::Missile( Vec2f loc )
 
 	float movX = ((cityDirection - _missileLocation.x)/100.0f);
 	float movY = (app::getWindowHeight()/100.0f);
-	_missileDirection	= Vec2f(movX, movY);
-	_missileVelocity	= Rand::randFloat( 0.4f ) + 0.2f;
-	_missileRadius	= 3.0f;
+	_missileDirection = Vec2f(movX, movY);
+	_missileVelocity = Rand::randFloat( 0.4f ) + 0.2f;
+	_missileRadius = 3.0f;
 }
 
 //Pre: None
@@ -58,7 +58,8 @@ void Missile::update() {
 	float missileLY=_missileLocation.y; 
 	float missileV=_missileVelocity;
 
-	_asm{ movss xmm0, missileDX;
+	_asm{ 
+		movss xmm0, missileDX;
 		movss xmm1, missileDY;
 		mulss xmm0,missileV; 
 		mulss xmm1,missileV;
@@ -67,8 +68,9 @@ void Missile::update() {
 		movss missileLX,xmm0;
 		movss missileLY,xmm1;
 	};
-		_missileLocation.x=missileLX; 
-		_missileLocation.y=missileLY; 
+
+	_missileLocation.x=missileLX; 
+	_missileLocation.y=missileLY; 
 }
 
 //Pre: None

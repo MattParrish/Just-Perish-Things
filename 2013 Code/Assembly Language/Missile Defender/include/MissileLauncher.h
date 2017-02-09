@@ -10,12 +10,12 @@
 // class MissileLauncher
 // Contains a list of Missile objects
 class MissileLauncher {
- public:
+ 	public:
 
-//constructor
+	//Constructor
 	MissileLauncher();
 
-//Mutators
+	//Mutators
 	void update();
 	void draw();
 	void addMissile();
@@ -24,5 +24,5 @@ class MissileLauncher {
 	bool rightLifeCheck();
 	void deadCheck(float, float, float);
 	
-	std::list<Missile>	_Missiles;
+	std::list<Missile> _Missiles;
 };

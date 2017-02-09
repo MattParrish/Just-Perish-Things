@@ -10,20 +10,20 @@
 // class Missile
 // Missile object
 class Missile {
- public:
+ 	public:
 
-//constructor
+	//Constructor
 	Missile( ci::Vec2f );
 
-//Mutators
+	//Mutators
 	void update();
 	void draw();
 
-//Accessor
+	//Accessor
 	int getMissileX();
 
-	ci::Vec2f	_missileLocation;
-	ci::Vec2f	_missileDirection;
-	float		_missileVelocity;	
-	float		_missileRadius;
+	ci::Vec2f _missileLocation;
+	ci::Vec2f _missileDirection;
+	float _missileVelocity;	
+	float _missileRadius;
 };

@@ -24,12 +24,12 @@ using namespace std;
 //class Boss
 //Contains information on a Boss Object
 class Boss {
- public:
+	public:
 
-//Constructor
+	//Constructor
 	Boss();
 
-//Mutators
+	//Mutators
 	void setUp();
 	void update();
 	void draw();
