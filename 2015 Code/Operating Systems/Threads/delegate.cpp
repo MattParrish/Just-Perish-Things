@@ -59,26 +59,31 @@ int getInputValue()
 
 void run()
 {
-    int argVal;
+	int argVal;
 	int retVal;
 	bool isEmpty = false;
 	bool shouldIgo = false;
 
 	// Check to see if the input queue is empty
-	{ lock_guard<mutex> count_guard(count_mutex);
-	isEmpty = inputQue.empty();
+	// Extra scope added for Mutex locking
+	{ 
+		lock_guard<mutex> count_guard(count_mutex);
+		isEmpty = inputQue.empty();
 	}
 
 	// If the input queue is NOT empty, then more data to read,
 	//     get it, and call sa2a on it
 	while(!isEmpty) 
 	{
-		{ lock_guard<mutex> count_guard(count_mutex);
+		// Extra scope added for Mutex locking
+		{ 
+			lock_guard<mutex> count_guard(count_mutex);
 
 			// Check for if a context switch had emptied the queue, if queue DOES
-				// have at least one item in it, pop it off, set a bool saying that
-				// it owns an int to run
-			if(!inputQue.empty()) {
+			// have at least one item in it, pop it off, set a bool saying that
+			// it owns an int to run
+			if(!inputQue.empty()) 
+			{
 				argVal = inputQue.front();
 				inputQue.pop();
 				shouldIgo = true;
@@ -95,7 +100,9 @@ void run()
 			retVal = sa2a(argVal);
 		
 			// Lock it to put our found values into the output queue, so it's safe
-			{ lock_guard<mutex> count_guard(count_mutex);
+			// Extra scope added for Mutex locking
+			{ 
+				lock_guard<mutex> count_guard(count_mutex);
 				outputQue.push(argVal);
 				outputQue.push(retVal);
 				isEmpty = inputQue.empty();
@@ -110,7 +117,7 @@ void run()
 // print result.
 int main()
 {
-    count = 0;
+	count = 0;
 
 	int inputValue;
 
@@ -128,31 +135,31 @@ int main()
 		inputValue = getInputValue();
 	}
 
-    cout << "Done getting input."<< endl;
-    cout << "GET TO WORK SLAVES. (This program does not condone the use of slave labor)" << endl;
+    	cout << "Done getting input."<< endl;
+    	cout << "GET TO WORK SLAVES. (This program does not condone the use of slave labor)" << endl;
 
-    // Vector of thread objects, not yet holding actual threads
-    vector<thread> ts(NUMTHREADS);
+    	// Vector of thread objects, not yet holding actual threads
+    	vector<thread> ts(NUMTHREADS);
 
-    // Spawn all threads
-    for (int i = 0; i < NUMTHREADS; ++i)
-    {
-        try
-        {
-            ts[i] = thread(run);
-        }
-        catch(...)
-        {
-            cout << endl;
-            cout << "ERROR: It appears that we can only spawn "
-                 << i << " threads on this system." << endl;
-            cout << "  Try reducing NUMTHREADS to " << i
-                 << " and recompiling." << endl;
-            exit(1);
-        }
-    }
+    	// Spawn all threads
+    	for (int i = 0; i < NUMTHREADS; ++i)
+    	{
+        	try
+        	{
+            		ts[i] = thread(run);
+        	}
+        	catch(...)
+        	{
+            		cout << endl;
+            		cout << "ERROR: It appears that we can only spawn "
+                 	     << i << " threads on this system." << endl;
+            		cout << "  Try reducing NUMTHREADS to " << i
+                 	     << " and recompiling." << endl;
+            		exit(1);
+        	}
+    	}	
 
-    // Join all spawned threads
+    	// Join all spawned threads
 
 	int check = 0;
 
@@ -169,11 +176,10 @@ int main()
 	}
 	   
 	for (int i = 0; i < NUMTHREADS; ++i)
-    {
-        ts[i].join();
-    }
+    	{
+        	ts[i].join();
+    	}
 
 	cout << "Well done slaves! All done now!" << endl;
 	return 0;
 }
-
