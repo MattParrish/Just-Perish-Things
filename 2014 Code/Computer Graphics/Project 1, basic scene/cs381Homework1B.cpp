@@ -613,7 +613,8 @@ void mySpecial(int key, int x, int y)
 		}
         	glutPostRedisplay();
         	break;
-    	case GLUT_KEY_LEFT:   // <- move Cloud left
+ 
+	case GLUT_KEY_LEFT:   // <- move Cloud left
         	cloudX -= 0.1;
 		if(stormMode)
 		{
