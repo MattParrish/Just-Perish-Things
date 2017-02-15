@@ -602,41 +602,41 @@ void mySpecial(int key, int x, int y)
 {
     	switch (key)
     	{
-    		case GLUT_KEY_RIGHT:  // -> move Cloud right
-        		cloudX += 0.1;
-			if (cloudX > 30.)
-			{
-				if(stormMode)
-					cloudX = -CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER;
-				else
-					cloudX = -CLOUD_WIDTH;
-			}
-        		glutPostRedisplay();
-        		break;
-    		case GLUT_KEY_LEFT:   // <- move Cloud left
-        		cloudX -= 0.1;
+    	case GLUT_KEY_RIGHT:  // -> move Cloud right
+        	cloudX += 0.1;
+		if (cloudX > 30.)
+		{
 			if(stormMode)
-			{
-				if (cloudX < -(CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER))
-					cloudX = 30.0;
-			} else if(cloudX < -CLOUD_WIDTH)
+				cloudX = -CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER;
+			else
+				cloudX = -CLOUD_WIDTH;
+		}
+        	glutPostRedisplay();
+        	break;
+    	case GLUT_KEY_LEFT:   // <- move Cloud left
+        	cloudX -= 0.1;
+		if(stormMode)
+		{
+			if (cloudX < -(CLOUD_WIDTH * STORM_CLOUD_SIZE_MULTIPLIER))
 				cloudX = 30.0;
-        		glutPostRedisplay();
-        		break; 
+		} else if(cloudX < -CLOUD_WIDTH)
+			cloudX = 30.0;
+        	glutPostRedisplay();
+        	break; 
 
-		case GLUT_KEY_UP:    // ^ move Cloud up
-        		cloudY += 0.1;
-        		if (cloudY > 20.0)
-        			cloudY = 20.;
-        		glutPostRedisplay();
-        		break; 
+	case GLUT_KEY_UP:    // ^ move Cloud up
+       		cloudY += 0.1;
+       		if (cloudY > 20.0)
+       			cloudY = 20.;
+       		glutPostRedisplay();
+       		break; 
 
-		case GLUT_KEY_DOWN:  // \/ move Cloud down
-        		cloudY -= 0.1;
-        		if (cloudY < 0.0)
-            			cloudY = 0.0;
-        		glutPostRedisplay();
-        		break; 
+	case GLUT_KEY_DOWN:  // \/ move Cloud down
+        	cloudY -= 0.1;
+        	if (cloudY < 0.0)
+        		cloudY = 0.0;
+        	glutPostRedisplay();
+        	break; 
     	}
 }
 
