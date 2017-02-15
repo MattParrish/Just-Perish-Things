@@ -355,62 +355,72 @@ void myKeyboard(unsigned char key, int x, int y)
 {
     	switch (key)
     	{
-    	case ' ':     // Space: reset object rotation
-        	resetObjRotation();
-        	glutPostRedisplay();
-        	break;
-    	case 'x':     // X: reset all
-    	case 'X':
-        	resetAll();
-        	glutPostRedisplay();
-        	break;
-    	case '+':     // +: Increases how many layers of crosses are drawn
-	case '=':     //      Limited to 4
-		howManyCrosses += 1;
-		if(howManyCrosses >= 4)
-			howManyCrosses = 4;
-		glutPostRedisplay();
-        	break;
-    	case '-':     // -: Decreases how many layers are drawn
-	case '_':
-		howManyCrosses -= 1;
-		if(howManyCrosses <= 1)
-			howManyCrosses = 1;
-		glutPostRedisplay();
-        	break;
-    	case '~':     // ~: Increases how many layers of crosses are drawn
-	case '`':     //      No limits
-		howManyCrosses += 1;
-		glutPostRedisplay();
-        	break;
-	case 's':     // S: decreases the Y-ish angle to rotate by
-    	case 'S': 
-		rotateAngleY -= 1.;
-		glutPostRedisplay();
-        	break;
-	case 'w':     // W: increases the Y-ish angle to rotate by
-    	case 'W':
-		rotateAngleY += 1.; 
-		glutPostRedisplay();
-        	break;
-	case 'a':     // A: decreases the X-ish angle to rotate by
-    	case 'A':
-		rotateAngleX -= 1.;
-		glutPostRedisplay();
-        	break;
-	case 'd':     // D: increases the X-ish angle to rotate by
-    	case 'D':
-		rotateAngleX += 1.;
-		glutPostRedisplay();
-        	break;
-	case 'r':     // R: toggles the auto-rotate
-	case 'R':
-		autoRotate = !autoRotate;
-		glutPostRedisplay();
-		break;
-    	case ESCKEY:  // Esc: quit
-        	exit(0);
-     		break;
+    		case ' ':     // Space: reset object rotation
+        		resetObjRotation();
+        		glutPostRedisplay();
+        		break;
+
+		case 'x':     // X: reset all
+    		case 'X':
+        		resetAll();
+        		glutPostRedisplay();
+        		break;
+
+		case '+':     // +: Increases how many layers of crosses are drawn
+		case '=':     //      Limited to 4
+			howManyCrosses += 1;
+			if(howManyCrosses >= 4)
+				howManyCrosses = 4;
+			glutPostRedisplay();
+        		break;
+    
+		case '-':     // -: Decreases how many layers are drawn
+		case '_':
+			howManyCrosses -= 1;
+			if(howManyCrosses <= 1)
+				howManyCrosses = 1;
+			glutPostRedisplay();
+        		break;
+    
+		case '~':     // ~: Increases how many layers of crosses are drawn
+		case '`':     //      No limits
+			howManyCrosses += 1;
+			glutPostRedisplay();
+        		break;
+
+		case 's':     // S: decreases the Y-ish angle to rotate by
+    		case 'S': 
+			rotateAngleY -= 1.;
+			glutPostRedisplay();
+        		break;
+
+		case 'w':     // W: increases the Y-ish angle to rotate by
+    		case 'W':
+			rotateAngleY += 1.; 
+			glutPostRedisplay();
+        		break;
+
+		case 'a':     // A: decreases the X-ish angle to rotate by
+    		case 'A':
+			rotateAngleX -= 1.;
+			glutPostRedisplay();
+        		break;
+
+		case 'd':     // D: increases the X-ish angle to rotate by
+    		case 'D':
+			rotateAngleX += 1.;
+			glutPostRedisplay();
+        		break;
+
+		case 'r':     // R: toggles the auto-rotate
+		case 'R':
+			autoRotate = !autoRotate;
+			glutPostRedisplay();
+			break;
+
+		case ESCKEY:  // Esc: quit
+        		exit(0);
+     			break;
     	}
 }
 
@@ -421,36 +431,39 @@ void mySpecial(int key, int x, int y)
 {
     	switch (key)
     	{
-    	case GLUT_KEY_RIGHT:  // right: rotation
-        	glLoadIdentity();
-        	glRotated(angstep, 0.,1.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
-    	case GLUT_KEY_LEFT:   // left: rotation
-        	glLoadIdentity();
-        	glRotated(-angstep, 0.,1.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
-    	case GLUT_KEY_UP:     // up: rotation
-    		glLoadIdentity();
-        	glRotated(-angstep, 1.,0.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
-    	case GLUT_KEY_DOWN:   // down: rotation
-        	glLoadIdentity();
-        	glRotated(angstep, 1.,0.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
+    		case GLUT_KEY_RIGHT:  // right: rotation
+        		glLoadIdentity();
+        		glRotated(angstep, 0.,1.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
+
+		case GLUT_KEY_LEFT:   // left: rotation
+        		glLoadIdentity();
+        		glRotated(-angstep, 0.,1.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
+
+		case GLUT_KEY_UP:     // up: rotation
+    			glLoadIdentity();
+        		glRotated(-angstep, 1.,0.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
+
+		case GLUT_KEY_DOWN:   // down: rotation
+        		glLoadIdentity();
+        		glRotated(angstep, 1.,0.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
     	}
-}
+}	
 
 
 // myReshape
