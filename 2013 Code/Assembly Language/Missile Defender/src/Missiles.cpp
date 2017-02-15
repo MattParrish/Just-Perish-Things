@@ -21,18 +21,18 @@ Missile::Missile( Vec2f loc )
 	_missileLocation = loc;
 	switch(i)
 	{
-	case 0:
-		cityDirection = app::getWindowWidth()/4;
-		break;
-	case 1:
-		cityDirection = app::getWindowWidth()/2;
-		break;
-	case 2: 
-		cityDirection = (3*app::getWindowWidth())/4;
-		break;
-	default:
-		cityDirection = app::getWindowWidth()/4;
-		break;
+		case 0:
+			cityDirection = app::getWindowWidth()/4;
+			break;
+		case 1:
+			cityDirection = app::getWindowWidth()/2;
+			break;
+		case 2: 
+			cityDirection = (3*app::getWindowWidth())/4;
+			break;
+		default:
+			cityDirection = app::getWindowWidth()/4;
+			break;
 	}
 
 	float movX = ((cityDirection - _missileLocation.x)/100.0f);
