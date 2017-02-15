@@ -607,58 +607,67 @@ void myKeyboard(unsigned char key, int x, int y)
 {
     	switch (key)
     	{
-	case '=':      // + key: Increase bounding cage size.
-	case '+':
-		cageSize += 0.2;
-		if(cageSize >= 6.0)
-			cageSize = 6.0;
-		glutPostRedisplay();
-		break;	
-	case '-':      // - key: Decrase bounding cage size.
-	case '_':
-		cageSize -= 0.2;
-		if(cageSize <= 1.2)
-			cageSize = 1.2;
-		glutPostRedisplay();
-		break;
-	case 'w':      // w key: Increase 26-gon's Y velocity.
-	case 'W':
-		polyVelocY += 0.1;
-		glutPostRedisplay();
-		break;
-	case 's':      // s key: Decrease 26-gon's Y velocity.
-	case 'S':
-		polyVelocY -= 0.1;
-		glutPostRedisplay();
-		break;
-	case 'a':      // a key: Decrease 26-gon's X velocity.
-	case 'A':
-		polyVelocX -= 0.1;
-		glutPostRedisplay();
-		break;
-	case 'd':      // d key: Increase 26-gon's X velocity.
-	case 'D':
-		polyVelocX += 0.1;
-		glutPostRedisplay();
-		break;
-	case 'r':      // r key: Decrease 26-gon's Z velocity.
-	case 'R':
-		polyVelocZ -= 0.1;
-		glutPostRedisplay();
-		break;
-	case 'f':      // r key: Increase 26-gon's Z velocity.
-	case 'F':
-		polyVelocZ += 0.1;
-		glutPostRedisplay();
-		break;
-    	case 'z':     // Z: reset rotations
-    	case 'Z':
-        	resetObjRotation();
-        	glutPostRedisplay();
-        	break;
-    	case ESCKEY:  // Esc: quit
-        	exit(0);
-        	break;
+		case '=':      // + key: Increase bounding cage size.
+		case '+':
+			cageSize += 0.2;
+			if(cageSize >= 6.0)
+				cageSize = 6.0;
+			glutPostRedisplay();
+			break;	
+
+		case '-':      // - key: Decrase bounding cage size.
+		case '_':
+			cageSize -= 0.2;
+			if(cageSize <= 1.2)
+				cageSize = 1.2;
+			glutPostRedisplay();
+			break;
+
+		case 'w':      // w key: Increase 26-gon's Y velocity.
+		case 'W':
+			polyVelocY += 0.1;
+			glutPostRedisplay();
+			break;
+
+		case 's':      // s key: Decrease 26-gon's Y velocity.
+		case 'S':
+			polyVelocY -= 0.1;
+			glutPostRedisplay();
+			break;
+
+		case 'a':      // a key: Decrease 26-gon's X velocity.
+		case 'A':
+			polyVelocX -= 0.1;
+			glutPostRedisplay();
+			break;
+
+		case 'd':      // d key: Increase 26-gon's X velocity.
+		case 'D':
+			polyVelocX += 0.1;
+			glutPostRedisplay();
+			break;
+
+		case 'r':      // r key: Decrease 26-gon's Z velocity.
+		case 'R':
+			polyVelocZ -= 0.1;
+			glutPostRedisplay();
+			break;
+
+		case 'f':      // r key: Increase 26-gon's Z velocity.
+		case 'F':
+			polyVelocZ += 0.1;
+			glutPostRedisplay();
+			break;
+
+		case 'z':     // Z: reset rotations
+    		case 'Z':
+        		resetObjRotation();
+        		glutPostRedisplay();
+        		break;
+
+		case ESCKEY:  // Esc: quit
+        		exit(0);
+        		break;
     	}
 }
 
@@ -669,36 +678,39 @@ void mySpecial(int key, int x, int y)
 {
     	switch (key)
     	{
-    	case GLUT_KEY_RIGHT:  // right: rotation
-        	glLoadIdentity();
-        	glRotated(angstep, 0.,1.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
-    	case GLUT_KEY_LEFT:   // left: rotation
-        	glLoadIdentity();
-        	glRotated(-angstep, 0.,1.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
-    	case GLUT_KEY_UP:     // up: rotation
-        	glLoadIdentity();
-        	glRotated(-angstep, 1.,0.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
-    	case GLUT_KEY_DOWN:   // down: rotation
-        	glLoadIdentity();
-        	glRotated(angstep, 1.,0.,0.);
-        	glMultMatrixd(savedrots);
-        	glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
-        	glutPostRedisplay();
-        	break;
-    	}
-}
+    		case GLUT_KEY_RIGHT:  // right: rotation
+        		glLoadIdentity();
+        		glRotated(angstep, 0.,1.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
+
+		case GLUT_KEY_LEFT:   // left: rotation
+        		glLoadIdentity();
+        		glRotated(-angstep, 0.,1.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
+
+		case GLUT_KEY_UP:     // up: rotation
+        		glLoadIdentity();
+        		glRotated(-angstep, 1.,0.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
+
+		case GLUT_KEY_DOWN:   // down: rotation
+        		glLoadIdentity();
+        		glRotated(angstep, 1.,0.,0.);
+        		glMultMatrixd(savedrots);
+        		glGetDoublev(GL_MODELVIEW_MATRIX, savedrots);
+        		glutPostRedisplay();
+        		break;
+	}
+}	
 
 
 // myReshape
