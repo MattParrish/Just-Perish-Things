@@ -35,57 +35,57 @@ void City::locationSet(int placement)
 	float actualCitySpotHeight;
 	switch(placement)
 	{		
-	case 1:	
-		 _asm{
-			 movss xmm0,cityPlacementWidthHelper;
-			 movss xmm1,cityPlacementHeightHelper;
-
-			 subss xmm0, halfCityWidth;
-			 subss xmm1, halfCityHeight;
-
-			 movss actualCitySpotWidth, xmm0;
-			 movss actualCitySpotHeight, xmm1;
-
-		 }
-		 _cityLocation.x=actualCitySpotWidth;
-		 _cityLocation.y=actualCitySpotHeight;
-		break;
-	case 2:
-		cityPlacementWidthHelper=app::getWindowWidth()/2;
-
-		_asm{
-			 movss xmm0,cityPlacementWidthHelper;
-			 movss xmm1,cityPlacementHeightHelper;
-
-			 subss xmm0, halfCityWidth;
-			 subss xmm1, halfCityHeight;
-
-			 movss actualCitySpotWidth, xmm0;
-			 movss actualCitySpotHeight, xmm1;
-
-		 }
-		 _cityLocation.x=actualCitySpotWidth;
-		 _cityLocation.y=actualCitySpotHeight;
-		break;
-	case 3:
-		cityPlacementWidthHelper*=3;
-
-		_asm{
-			 movss xmm0,cityPlacementWidthHelper;
-			 movss xmm1,cityPlacementHeightHelper;
-
-			 subss xmm0, halfCityWidth;
-			 subss xmm1, halfCityHeight;
-
-			 movss actualCitySpotWidth, xmm0;
-			 movss actualCitySpotHeight, xmm1;
-
-		 }
-		 _cityLocation.x=actualCitySpotWidth;
-		 _cityLocation.y=actualCitySpotHeight;
-		break;
-	default:
-		break;
+		case 1:	
+			 _asm{
+				 movss xmm0,cityPlacementWidthHelper;
+				 movss xmm1,cityPlacementHeightHelper;
+	
+				 subss xmm0, halfCityWidth;
+				 subss xmm1, halfCityHeight;
+	
+				 movss actualCitySpotWidth, xmm0;
+				 movss actualCitySpotHeight, xmm1;
+	
+			 }
+			 _cityLocation.x=actualCitySpotWidth;
+			 _cityLocation.y=actualCitySpotHeight;
+			break;
+		case 2:
+			cityPlacementWidthHelper=app::getWindowWidth()/2;
+	
+			_asm{
+				 movss xmm0,cityPlacementWidthHelper;
+				 movss xmm1,cityPlacementHeightHelper;
+	
+				 subss xmm0, halfCityWidth;
+				 subss xmm1, halfCityHeight;
+	
+				 movss actualCitySpotWidth, xmm0;
+				 movss actualCitySpotHeight, xmm1;
+	
+			 }
+			 _cityLocation.x=actualCitySpotWidth;
+			 _cityLocation.y=actualCitySpotHeight;
+			break;
+		case 3:
+			cityPlacementWidthHelper*=3;
+	
+			_asm{
+				 movss xmm0,cityPlacementWidthHelper;
+				 movss xmm1,cityPlacementHeightHelper;
+	
+				 subss xmm0, halfCityWidth;
+				 subss xmm1, halfCityHeight;
+	
+				 movss actualCitySpotWidth, xmm0;
+				 movss actualCitySpotHeight, xmm1;
+	
+			 }
+			 _cityLocation.x=actualCitySpotWidth;
+			 _cityLocation.y=actualCitySpotHeight;
+			break;
+		default:
+			break;
 	}
 }
 
