@@ -1,11 +1,7 @@
 ///////////////////////////////////////////
-
 //    Matthew Parrish and Tom Cerny      //
-
 //          CS301 Project 2              //
-
 //    boss.cp file for MissileDefender   //
-
 ///////////////////////////////////////////
 
 #include "boss.h"
